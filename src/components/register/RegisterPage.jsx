@@ -14,17 +14,19 @@ export const Register = () => {
   const [password, setPassword] = useState('');
 
   const handleRegisterSubmit = async (e) => {
-    console.log(email)
-    console.log(e)
     e.preventDefault();
     try {
       const response = await axios.post('http://localhost:5000/register', {
         email,
         password
       });
-      console.log('register was sucessful :', response.data);
-
-    } catch (error) {
+      console.log(response)
+      if(response.statusText === "Created"){
+        console.log(`User created`)
+      }else{
+        console.log(`${response.data}`)
+      }
+    }catch (error) {
       console.log("dont possible make registration", error)
     }
 

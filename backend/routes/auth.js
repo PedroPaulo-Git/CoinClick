@@ -8,7 +8,6 @@ const ListUsers = []
 
 
 authRoute.post('/register', async (req, res) => {
-    console.log('REGISTER')
     const { email, password } = req.body;
     // const newUser = {
     //     id: Math.floor(Math.random() * 1000) + 1,
@@ -19,16 +18,15 @@ authRoute.post('/register', async (req, res) => {
     // ListUsers.push(newUser)
     // console.log(newUser)
     try {
-        console.log(`user created`)
-        console.log(pool)
         const newUser = await pool.query(
             'INSERT INTO userscoincLick (email, password) VALUES ($1,$2) RETURNING *',
             [email,password]
         );
+        console.log(newUser.rows[0])
         res.status(201).json(newUser.rows[0])
     } catch (error) {
-        res.send(`error dont was possible create a user ${error}`)
-        res.status(500).send(`Error creating user and put on database`)
+        res.send(`Dont was possible create a user ${error}`)
+        console.log(`Dont was possible create a user  ${error}`)
     }
 }
 )
