@@ -20,7 +20,7 @@ authRoute.post('/register', async (req, res) => {
     try {
         const newUser = await pool.query(
             'INSERT INTO userscoincLick (email, password) VALUES ($1,$2) RETURNING *',
-            [email,password]
+            [email, password]
         );
         console.log(newUser.rows[0])
         res.status(201).json(newUser.rows[0])
@@ -33,7 +33,7 @@ authRoute.post('/register', async (req, res) => {
 authRoute.post('/login', async (req, res) => {
     const { email, password } = req.body;
 
-    try{
+    try {
         const loginUser = await pool.query(
             'SELECT * FROM userscoincLick WHERE email = $1',
             [email]
@@ -42,32 +42,30 @@ authRoute.post('/login', async (req, res) => {
         const databasePassword = loginUser.rows[0].password
         let loginisValid = false
 
-    while(loginisValid === false){
+            console.log("database email : ", databaseEmail);
+            console.log("database password : ", databasePassword);
+        while (loginisValid === false) {
 
-        console.log("database email : ",databaseEmail);
-        console.log("database password : ",databasePassword);
 
-        if (databaseEmail === email && databasePassword === password){
-            loginisValid = true
-            console.log(`login isValid ?  > ${loginisValid} \n`)
+
+
+            if (databaseEmail === email && databasePassword === password) {
+                loginisValid = true
+                console.log(`login isValid ?  > ${loginisValid} \n`)
+                res.send(loginisValid);
+            }
+            else {
+                loginisValid = false
+                console.log('Your email or password is incorrect ! \n')
+                res.send(loginisValid)       
+            }
+
+            break;
         }
-        else{
-            console.log('Your email or password is incorrect ! \n')
-            loginisValid = false
-        } 
-        if( loginUser.rows[0].password === password){
-                
-        }
-        break;
-        }
 
-
-
-
-
-    }catch(error){
+    } catch (error) {
         console.log(error)
-
+        res.send('Your email or password is incorrect ! \n')
     }
 
 
