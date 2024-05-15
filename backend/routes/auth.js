@@ -30,6 +30,82 @@ authRoute.post('/register', async (req, res) => {
     }
 }
 )
+authRoute.post('/login', async (req, res) => {
+    const { email, password } = req.body;
+
+    try{
+        const loginUser = await pool.query(
+            'SELECT * FROM userscoincLick WHERE email = $1',
+            [email]
+        );
+        const databaseEmail = loginUser.rows[0].email
+        const databasePassword = loginUser.rows[0].password
+        let loginisValid = false
+
+    while(loginisValid === false){
+
+        console.log("database email : ",databaseEmail);
+        console.log("database password : ",databasePassword);
+
+        if (databaseEmail === email && databasePassword === password){
+            loginisValid = true
+            console.log(`login isValid ?  > ${loginisValid} \n`)
+        }
+        else{
+            console.log('Your email or password is incorrect ! \n')
+            loginisValid = false
+        } 
+        if( loginUser.rows[0].password === password){
+                
+        }
+        break;
+        }
+
+
+
+
+
+    }catch(error){
+        console.log(error)
+
+    }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    // const user = ListUsers.find(user => user.email === email);
+
+    // console.log("USERS LIST >>> ", ListUsers)
+    // console.log('Request body:', req.body);
+
+    // if (!user) {
+    //     console.log('User not found');
+    //     return res.status(404).send('User not found');
+    // }
+
+    // if (user.password !== password) {
+    //     console.log('user email : ', user.email)
+    //     console.log('user password : ', user.password)
+    //     console.log('Invalid password');
+    //     return res.status(401).send('Invalid password');
+    // }
+
+    // console.log('Login successful');
+    // res.send('Login successful');
+}
+)
+
 
 authRoute.get('/register/:id', async (req, res) => {
 
@@ -53,29 +129,6 @@ authRoute.get('/register/:id', async (req, res) => {
 
 })
 
-authRoute.post('/login', async (req, res) => {
-    const { email, password } = req.body;
-    const user = ListUsers.find(user => user.email === email);
-
-    console.log("USERS LIST >>> ", ListUsers)
-    console.log('Request body:', req.body);
-
-    if (!user) {
-        console.log('User not found');
-        return res.status(404).send('User not found');
-    }
-
-    if (user.password !== password) {
-        console.log('user email : ', user.email)
-        console.log('user password : ', user.password)
-        console.log('Invalid password');
-        return res.status(401).send('Invalid password');
-    }
-
-    console.log('Login successful');
-    res.send('Login successful');
-}
-)
 
 authRoute.get('/register', async (req, res) => {
     res.json(ListUsers)

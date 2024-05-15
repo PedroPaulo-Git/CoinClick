@@ -14,7 +14,6 @@ const Login = () => {
   const handleLoginSubmit = async (e) => {
     console.log("email > ",email)
     console.log("password length > ",password.length)
-    console.log(e)
     e.preventDefault();
     try {
       const response = await axios.post('http://localhost:5000/login', {
