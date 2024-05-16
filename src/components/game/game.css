@@ -14,7 +14,8 @@
    
 }
 .coins_point{
-    font-size: max(2vh,16px);
+    color: rgb(255, 255, 0);
+    font-size: max(2vh,20px);
     font-weight: 500
 }
 .coin{
