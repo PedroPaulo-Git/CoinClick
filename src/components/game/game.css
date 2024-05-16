@@ -1,15 +1,75 @@
+.header_game_coin{
+    position: relative;
+    top: 0;
+    width: 100%;
+    background-color: gray;
+    padding-block: 2vh;
+}
+.header_game_coin_container{
+    display: flex;
+    justify-content:flex-end;
+    padding-inline: 5vh;
+}
+.header_game_coin_point{
+   
+}
+.coins_point{
+    font-size: max(2vh,16px);
+    font-weight: 500
+}
 .coin{
     width: 10vh;
     cursor: pointer;
-    
 }
 .coin:hover{
     transform: scale(1.1);
     transition: all 0.4;
 }
-.coin.clicked{
+.coinCliked{
+    width: 10vh;
     transform: scale(1);
+    transition: all 0.4;
+    cursor: pointer;
 }
+
+/* -------------------------MAIN--------------------------  */
+.main_game_window_container{
+    position: absolute;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 2vh;
+    width: 100%;
+    height:80%;
+}
+.game_window{
+    position: relative;
+    background-color: rgb(216, 106, 243);
+    width: 80vh;
+    height: 50vh;
+    border: 1px solid black;
+}
+.game_window_bottom{
+    width: 100%;
+    position: absolute;
+    bottom: 0;
+    display: flex;
+    justify-content: space-between;
+    padding: 0vh 6vh 5vh;
+}
+.game_char{
+    width: max(20vh,50px);
+}
+.game_char_mychar{
+}
+
+
+
+
+
+
+
+/*--------------------------FOOTER------------------------ */
 .footer_game_coin{
     position: absolute;
     bottom: 0;
