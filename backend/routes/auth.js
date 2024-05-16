@@ -41,18 +41,12 @@ authRoute.post('/login', async (req, res) => {
         const databaseEmail = loginUser.rows[0].email
         const databasePassword = loginUser.rows[0].password
         let loginisValid = false
-
-            console.log("database email : ", databaseEmail);
-            console.log("database password : ", databasePassword);
         while (loginisValid === false) {
-
-
-
 
             if (databaseEmail === email && databasePassword === password) {
                 loginisValid = true
-                console.log(`login isValid ?  > ${loginisValid} \n`)
                 res.send(loginisValid);
+                console.log('Loging sucessful !')
             }
             else {
                 loginisValid = false

@@ -1,0 +1,24 @@
+.coin{
+    width: 10vh;
+    cursor: pointer;
+    
+}
+.coin:hover{
+    transform: scale(1.1);
+    transition: all 0.4;
+}
+.coin.clicked{
+    transform: scale(1);
+}
+.footer_game_coin{
+    position: absolute;
+    bottom: 0;
+    width: 100%;
+    background-color: gray;
+    padding-block: 2vh;
+}
+.footer_game_coin_container{
+    display: flex;
+    justify-content:flex-end;
+    padding-inline: 5vh;
+}

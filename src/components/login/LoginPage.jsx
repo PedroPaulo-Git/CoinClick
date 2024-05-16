@@ -7,7 +7,6 @@ import axios from 'axios';
 
 const Login = () => {
 
-  const [username, setUsername] = useState('');
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [loginisValid, setLoginisValid] = useState(false)
@@ -35,7 +34,7 @@ const Login = () => {
     if (loginisValid === true) {
       setShowResultLogin('login sucessful')
       setTimeout(() => {
-        window.location.href = '/';
+        window.location.href = '/game';
         setShowResultLogin('');
       }, 3000);
     } else {
