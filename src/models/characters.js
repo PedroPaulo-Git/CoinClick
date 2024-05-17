@@ -1,24 +1,48 @@
+
+const myCharCurrent =
+{
+    charWizard: {
+        'level':1,
+        'hpmax': 200,
+        'hp':200,
+        'atk': 25,
+        'power':5
+    },
+    charBoxer: {
+        'level':1,
+        'hpmax': 200,
+        'hp':200,
+        'atk': 10,
+        'power':0
+    }
+}
+
 const enemies =
-    [
-        {
 
-            witch: {
-                'hpmax': 200,
-                'atk': 10
-            }
+{
 
-        },
-        {
+    witch: {
+        'level':1,
+        'hpmax': 200,
+        'hp':200,
+        'atk': 10,
+        'power':5
+    },
+    monster: {
+        'level':1,
+        'hpmax': 200,
+        'hp':200,
+        'atk': 10,
+        'power':2
+    }
 
-            monster: {
-                'hpmax': 200,
-                'atk': 10
-            }
-        }
 
-    ]
+}
 
 
-console.log(enemies)
 
-module.exports=enemies;
+
+
+console.log(enemies, myCharCurrent)
+
+module.exports = { myCharCurrent, enemies };

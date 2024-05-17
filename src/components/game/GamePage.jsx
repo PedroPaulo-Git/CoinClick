@@ -1,50 +1,98 @@
 import React, { useEffect, useState } from 'react';
-import Coin from '../../assets/imgs/icons/coinicon.png'
+import Coin from '../../assets/imgs/icons/coinicon.png';
+import StartButton from '../../assets/imgs/icons/startButton.png'
 import CharMonster from '../../assets/imgs/npcskins/monster.png';
-import MyChar from '../../assets/imgs/npcskins/char1.png';
+import MyCharImg from '../../assets/imgs/npcskins/char1.png';
 import './game.css'
 
-import enemies from '../../models/characters'
+import { myCharCurrent, enemies } from '../../models/characters'
+import { battle } from '../../models/battle.mjs'
 
 const Game = () => {
 
   const [coinCliked, setCoinCliked] = useState(false)
-  const [coinClikedScale, setCoinClikedScale] = useState(false)
+  const [changeScale, setChangeScale] = useState(false)
   const [coins, setCoins] = useState(0)
 
+  const [changeScaleStartButton, setChangeScaleStartButton] = useState(false)
+
+
+  //Enemies
   const [enemiesStatus, setEnemiesStatus] = useState('')
   const [witchStatus, setWitchStatus] = useState('')
 
+  //Characters Current
+  const [charCurrent, setCharCurrent] = useState('')
 
-  const findWitchStatus = enemies.find(enemy => enemy.witch)
-  const witch = findWitchStatus.witch
-  const showWitchStatus = () => {
-    if (witch) {
-      const totalStatus = [witch.atk, witch.hpmax];
-      setWitchStatus(totalStatus);
-      console.log(totalStatus);
-    } else {
-      console.log("Witch not found in enemies array.");
-    }
-  }
-  const showEnemyStatus = () => {
-    setEnemiesStatus(enemies)
-    showWitchStatus()
-    console.log(enemiesStatus)
+
+  //Characters Current function Show
+  const myCharWizard = myCharCurrent.charWizard
+  const showMycharWizardStatus = () => {
+
   }
 
+  //Witch
+  const witch = enemies.witch
   useEffect(() => {
-    showEnemyStatus()
-    showWitchStatus()
-  }, [])
+    const showWitchStatus = () => {
+      if (witch) {
+        const totalStatus = [witch.atk, witch.hpmax];
+        setWitchStatus(totalStatus);
+      } else {
+        console.log("Witch not found in enemies array.");
+      }
+    };
+
+
+    const showEnemyStatus = () => {
+      setEnemiesStatus(enemies);
+      showWitchStatus();
+    };
+
+    showEnemyStatus();
+    showWitchStatus();
+  
+  }, []);
+
+  
+  //battle log
+  const [battleStatus, setBattleStatus] = useState(witch.hpmax);
+  const [witchHpCurrent, setWitchHpCurrent] = useState(witch.hpmax);
+  const myCharAttack = myCharWizard.atk;
+  const enemyWitchHp = witch.hpmax; 
+
+  const handleStartBattle = async () => {
+    await battle(enemyWitchHp, myCharAttack, setWitchHpCurrent);
+    console.log(battleStatus)
+  };
+
+
+  // const showWitchStatus = () => {
+  //   if (witch) {
+  //     const totalStatus = [witch.atk, witch.hpmax];
+  //     setWitchStatus(totalStatus);
+  //   } else {
+  //     console.log("Witch not found in enemies array.");
+  //   }
+  // }
+  // const showEnemyStatus = () => {
+  //   setEnemiesStatus(enemies)
+  //   showWitchStatus()
+  // }
+
+  // useEffect(() => {
+  //   showEnemyStatus()
+  //   showWitchStatus()
+  //   handleStartBattle()
+  // }, [])
 
 
   const HandleCoinClicked = () => {
     setCoinCliked(true)
     if (coinCliked === true) {
-      setCoinClikedScale(true)
+      setChangeScale(true)
       setTimeout(() => {
-        setCoinClikedScale(false)
+        setChangeScale(false)
       }, 100);
     }
     setCoins(coins + 1)
@@ -61,30 +109,38 @@ const Game = () => {
       </header>
       <main className='main_game_window_container'>
 
-        <div>
-          <p>Life:</p>
-          <p>Attack</p>
-          <p>Power</p>
+        <div className='view_status_container view_status_container_mychar '>
+          <p>Life: {myCharWizard.hpmax}</p>
+          <p>Attack: {myCharWizard.atk}</p>
+          <p>Power: {myCharWizard.power}</p>
         </div>
-
-        <div className='game_window'>
-          <div className='game_window_bottom'>
-            <img className='game_char game_char_mychar' src={MyChar} alt="" />
-            <img className='game_char game_char_monster' src={CharMonster} alt="" />
+        <div>
+          <div className='game_window'>
+            <div className='game_window_bottom'>
+              <img className='game_char game_char_mychar' src={MyCharImg} alt="" />
+              <img className='game_char game_char_enemy' src={CharMonster} alt="" />
+            </div>
+          </div>
+          <div className='game_functions_container'>
+            <div className='game_functions'>
+              <img onClick={handleStartBattle} className={changeScaleStartButton ? 'game_functions_button start_button' : 'game_functions_button start_button_clicked'} src={StartButton} alt="" />
+            </div>
           </div>
         </div>
+        <div className='view_status_container view_status_container-enemy '>
+          <p>Life: {witchHpCurrent}/{witch.hpmax}</p>
+          <p>Attack: {witch.atk}</p>
+          <p>Power: {witch.power}</p>
+        </div>
+        <div className='battle_status_container'>
 
-        <div>
-          <p>Life:{witch.hpmax}</p>
-          <p>Attack:{witch.atk}</p>
-          <p>Power:{}</p>
         </div>
 
       </main>
       <footer className='footer_game_coin'>
         <div className='footer_game_coin_container'>
           <div>
-            <img onClick={HandleCoinClicked} className={coinClikedScale ? 'coinCliked' : 'coin'} src={Coin} alt="" />
+            <img onClick={HandleCoinClicked} className={changeScale ? 'coinCliked' : 'coin'} src={Coin} alt="" />
           </div>
         </div>
       </footer>

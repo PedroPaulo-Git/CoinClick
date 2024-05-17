@@ -1,7 +1,13 @@
-body {
+@import url('https://fonts.googleapis.com/css2?family=Roboto+Slab:wght@100..900&display=swap');
 
+*{
+    font-family: "Roboto Slab", serif;
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
 }
 
-code {
- 
+
+body {
+    max-height: 100%;
 }

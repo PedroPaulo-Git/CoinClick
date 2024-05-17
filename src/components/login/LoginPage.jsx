@@ -28,6 +28,10 @@ const Login = () => {
       }, 1000);
     } catch (error) {
       console.log("dont possible make login", error)
+      setShowResultLogin(`dont possible make login`)
+      setTimeout(() => {
+        setShowResultLogin('');
+      }, 1000);
     }
   }
   useEffect(()=>{
