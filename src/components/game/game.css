@@ -65,15 +65,12 @@
     display: flex;
     align-items: center;
     justify-content: center;
-    width: 100%;
 
 }
 .game_image_enemydefeat{
     position: relative;
-    margin: -12vh 0;
-    width: 60%;
-    height: 50%;
-    top: 0;
+    margin: -16vh 0;
+    width: 80%;
 }
 
 .game_char_mychar{

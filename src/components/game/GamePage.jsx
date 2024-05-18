@@ -65,12 +65,14 @@ const Game = () => {
   //battle log
   const [battleStatus, setBattleStatus] = useState(witch.hpmax);
   const [witchHpCurrent, setWitchHpCurrent] = useState(witch.hpmax);
+  const [witchLevelCurrent, setWitchLevelCurrent] = useState(witch.level);
   const myCharAttack = myCharWizard.atk;
   const enemyWitchHp = witch.hpmax;
 
   const handleStartBattle = async () => {
-    await battle(enemyWitchHp, myCharAttack, setWitchHpCurrent);
+    await battle(enemyWitchHp, myCharAttack, setWitchHpCurrent,setWitchLevelCurrent);
     console.log(battleStatus)
+    console.log(witchLevelCurrent)
   };
 
 
@@ -117,7 +119,7 @@ const Game = () => {
       <main className='main_game_window_container'>
 
         <div className='view_status_container view_status_container_mychar '>
-          <p>Level:</p>
+          <p>Level: {myCharWizard.level}</p>
           <p>Life: {myCharWizard.hpmax}</p>
           <p>Attack: {myCharWizard.atk}</p>
           <p>Power: {myCharWizard.power}</p>
@@ -142,7 +144,7 @@ const Game = () => {
           </div>
         </div>
         <div className='view_status_container view_status_container-enemy '>
-          <p>Level:</p>
+          <p>Level: {witchLevelCurrent}</p>
           <p>Life: {witchHpCurrent}/{witch.hpmax}</p>
           <p>Attack: {witch.atk}</p>
           <p>Power: {witch.power}</p>
