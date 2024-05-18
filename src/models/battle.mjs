@@ -1,54 +1,70 @@
 import { myCharCurrent, enemies } from './characters.js';
-
+export let battleWins = (false)
 //console.log(myCharCurrent, enemies)
 // defining const of battle >
 export let myCharAttack = myCharCurrent.charWizard.atk;
+
 export const enemyWitchAttack = enemies.witch.atk;
-export const enemyWitchHpMax = enemies.witch.hpmax
+export let enemyWitchHpMax = enemies.witch.hpmax
+
 export let enemyWitchHp = enemyWitchHpMax
 export let enemyWitchLevel = enemies.witch.level
 
+let witchHpCurrent = enemies.witch.hp;
 
 
-export const battle = async (enemyWitchHp, myCharAttack, updateWitchHp, updateWitchLevel) => {
 
-  const uplevelEnemy=()=>{
-    
-      if ( enemyWitchHp <=0 ) {
-        enemyWitchLevel += 1
-        console.log(enemyWitchLevel)
-      }
+
+export const battle = async (battleWins, myCharAttack, updateWitchHp,updateWitchHpMax, updateWitchLevel,updateWitchAttack,updateWitcPower) => {
+
+
+  const enemyUpgradeSkills =  () => {
+
+    enemyWitchHpMax = enemyWitchHpMax * enemyWitchLevel;
+    witchHpCurrent = enemyWitchHpMax;
+
+    // console.log(enemyWitchLevel)
+    // console.log(enemyWitchHpMax)
+    console.log(witchHpCurrent)
+
+    updateWitchHp(witchHpCurrent)
+    updateWitchHpMax(enemyWitchHpMax)
+
+  }
+  
+  const uplevelEnemy =  () => {
+    if (battleWins === true) {
+      enemyWitchLevel += 1
+       enemyUpgradeSkills()
+      console.log(witchHpCurrent)
+      console.log('Your level : ',enemyWitchLevel)
+      updateWitchLevel(enemyWitchLevel)
+    }
   }
 
-  let battleLog = []
   const delay = (ms) => new Promise(resolve => setTimeout(resolve, ms));
 
-  while (enemyWitchHp > 0) {  
+  while (witchHpCurrent > 0 && !battleWins) {
     
-    let witchHpCurrent = 0
+    witchHpCurrent -= myCharAttack
+    
+    if (witchHpCurrent <= 0 && !battleWins ) {
+        battleWins = true
+        console.log('Battle finished with witch HP:', witchHpCurrent);
+    } else {
+      console.log('Continuous battle... Enemy life:', witchHpCurrent);
+   
+    }
+    
+    updateWitchHp(witchHpCurrent);
+    await delay(1000);
+ 
 
-        const attacktoWitch = enemyWitchHp -= myCharAttack; 
-        witchHpCurrent = attacktoWitch;
-
-        if (enemyWitchHp <= 0) {
-          battleLog.push(enemyWitchHp);
-          console.log('battle finish')  
-        } else {
-          battleLog.push(enemyWitchHp)
-          battleLog.push(`${witchHpCurrent}`);
-        }
-        
-  console.log(enemyWitchHp)
-  battleLog.push(enemyWitchHp); 
-  updateWitchHp(witchHpCurrent);
-  await delay(1000); 
+  console.log("Battle Wins? :" ,battleWins)
+  
+  await uplevelEnemy()
   }
-
-  battleLog.push(updateWitchLevel)
-  updateWitchLevel(enemyWitchLevel)
-  uplevelEnemy()
-
-  return battleLog;
+  return battleWins
 }
 
 

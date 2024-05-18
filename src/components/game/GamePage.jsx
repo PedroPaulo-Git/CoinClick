@@ -41,62 +41,34 @@ const Game = () => {
   //Witch
   const witch = enemies.witch
   useEffect(() => {
-    const showWitchStatus = () => {
-      if (witch) {
-        const totalStatus = [witch.atk, witch.hpmax];
-        setWitchStatus(totalStatus);
-      } else {
-        console.log("Witch not found in enemies array.");
-      }
-    };
-
-
-    const showEnemyStatus = () => {
-      setEnemiesStatus(enemies);
-      showWitchStatus();
-    };
-
-    showEnemyStatus();
-    showWitchStatus();
-    handleStartBattle()
+   
 
   }, []);
 
 
-  //battle log
-  const [battleStatus, setBattleStatus] = useState(witch.hpmax);
-  const [witchHpCurrent, setWitchHpCurrent] = useState(witch.hpmax);
-  const [witchLevelCurrent, setWitchLevelCurrent] = useState(witch.level);
-  const myCharAttack = myCharWizard.atk;
-  const enemyWitchHp = witch.hpmax;
+  //start battle
+  const [witchHpCurrent, setWitchHpCurrent] = useState(witch.hp);
+  const [updateWitchHpMax,setUpdateWitchHpMax]=useState(witch.hpmax)
 
-  const handleStartBattle = async () => {
-    await battle(enemyWitchHp, myCharAttack, setWitchHpCurrent,setWitchLevelCurrent);
-    console.log(battleStatus)
-    console.log(witchLevelCurrent)
+  const [witchLevelCurrent, setWitchLevelCurrent] = useState(witch.level);
+
+  const [battleWins,setBattleWins]= useState(false)
+  
+  const myCharAttack = myCharWizard.atk;
+  const enemyWitchHp = updateWitchHpMax;
+  
+  const handleStartBattle = () => {
+    battle(battleWins,myCharAttack, setWitchHpCurrent,setUpdateWitchHpMax,setWitchLevelCurrent);
+    console.log(enemyWitchHp)
+    console.log(witchHpCurrent)
+    setBattleWins(false)
+    console.log(battleWins)
   };
 
 
-  // const showWitchStatus = () => {
-  //   if (witch) {
-  //     const totalStatus = [witch.atk, witch.hpmax];
-  //     setWitchStatus(totalStatus);
-  //   } else {
-  //     console.log("Witch not found in enemies array.");
-  //   }
-  // }
-  // const showEnemyStatus = () => {
-  //   setEnemiesStatus(enemies)
-  //   showWitchStatus()
-  // }
-
-  // useEffect(() => {
-  //   showEnemyStatus()
-  //   showWitchStatus()
-  //   handleStartBattle()
-  // }, [])
 
 
+  //click coin
   const HandleCoinClicked = () => {
     setCoinCliked(true)
     if (coinCliked === true) {
@@ -127,10 +99,10 @@ const Game = () => {
         </div>
 
         <div>
-          <div className='game_status_container'> 
-            {witchHpCurrent <= 0 ? <img className='game_window game_image_enemydefeat' src={EnemyDefeat}/> :''}
-         </div>
-        <div className='game_window'>
+          <div className='game_status_container'>
+            {witchHpCurrent <= 0 ? <img className='game_window game_image_enemydefeat' src={EnemyDefeat} /> : ''}
+          </div>
+          <div className='game_window'>
             <img className='game_window' src={Arena} alt="" />
             <div className='game_window_bottom'>
               <img className='game_char game_char_mychar' src={MyCharImg} alt="" />
@@ -146,7 +118,7 @@ const Game = () => {
         </div>
         <div className='view_status_container view_status_container-enemy '>
           <p>Level: {witchLevelCurrent}</p>
-          <p>Life: {witchHpCurrent}/{witch.hpmax}</p>
+          <p>Life: {witchHpCurrent}/{updateWitchHpMax}</p>
           <p>Attack: {witch.atk}</p>
           <p>Power: {witch.power}</p>
         </div>

@@ -43,6 +43,6 @@ const enemies =
 
 
 
-console.log(enemies, myCharCurrent)
+//console.log(enemies, myCharCurrent)
 
 module.exports = { myCharCurrent, enemies };
