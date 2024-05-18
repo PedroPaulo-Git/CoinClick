@@ -58,6 +58,7 @@ const Game = () => {
 
     showEnemyStatus();
     showWitchStatus();
+    handleStartBattle()
 
   }, []);
 

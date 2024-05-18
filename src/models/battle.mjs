@@ -1,6 +1,6 @@
 import { myCharCurrent, enemies } from './characters.js';
 
-console.log(myCharCurrent, enemies)
+//console.log(myCharCurrent, enemies)
 // defining const of battle >
 export let myCharAttack = myCharCurrent.charWizard.atk;
 export const enemyWitchAttack = enemies.witch.atk;
@@ -15,7 +15,6 @@ export const battle = async (enemyWitchHp, myCharAttack, updateWitchHp, updateWi
   const uplevelEnemy=()=>{
     
       if ( enemyWitchHp <=0 ) {
-        enemyWitchHp = 0
         enemyWitchLevel += 1
         console.log(enemyWitchLevel)
       }
@@ -30,7 +29,7 @@ export const battle = async (enemyWitchHp, myCharAttack, updateWitchHp, updateWi
 
         const attacktoWitch = enemyWitchHp -= myCharAttack; 
         witchHpCurrent = attacktoWitch;
-        
+
         if (enemyWitchHp <= 0) {
           battleLog.push(enemyWitchHp);
           console.log('battle finish')  
