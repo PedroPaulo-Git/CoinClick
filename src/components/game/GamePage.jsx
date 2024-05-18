@@ -3,6 +3,13 @@ import Coin from '../../assets/imgs/icons/coinicon.png';
 import StartButton from '../../assets/imgs/icons/startButton.png'
 import CharMonster from '../../assets/imgs/npcskins/monster.png';
 import MyCharImg from '../../assets/imgs/npcskins/char1.png';
+
+
+import EnemyDefeat from '../../assets/imgs/icons/enemydefeat.png';
+
+
+
+import Arena from '../../assets/imgs/arena.jpeg';
 import './game.css'
 
 import { myCharCurrent, enemies } from '../../models/characters'
@@ -51,15 +58,15 @@ const Game = () => {
 
     showEnemyStatus();
     showWitchStatus();
-  
+
   }, []);
 
-  
+
   //battle log
   const [battleStatus, setBattleStatus] = useState(witch.hpmax);
   const [witchHpCurrent, setWitchHpCurrent] = useState(witch.hpmax);
   const myCharAttack = myCharWizard.atk;
-  const enemyWitchHp = witch.hpmax; 
+  const enemyWitchHp = witch.hpmax;
 
   const handleStartBattle = async () => {
     await battle(enemyWitchHp, myCharAttack, setWitchHpCurrent);
@@ -110,17 +117,24 @@ const Game = () => {
       <main className='main_game_window_container'>
 
         <div className='view_status_container view_status_container_mychar '>
+          <p>Level:</p>
           <p>Life: {myCharWizard.hpmax}</p>
           <p>Attack: {myCharWizard.atk}</p>
           <p>Power: {myCharWizard.power}</p>
         </div>
+
         <div>
-          <div className='game_window'>
+          <div className='game_status_container'> 
+            {witchHpCurrent <= 0 ? <img className='game_window game_image_enemydefeat' src={EnemyDefeat}/> :''}
+         </div>
+        <div className='game_window'>
+            <img className='game_window' src={Arena} alt="" />
             <div className='game_window_bottom'>
               <img className='game_char game_char_mychar' src={MyCharImg} alt="" />
               <img className='game_char game_char_enemy' src={CharMonster} alt="" />
             </div>
           </div>
+
           <div className='game_functions_container'>
             <div className='game_functions'>
               <img onClick={handleStartBattle} className={changeScaleStartButton ? 'game_functions_button start_button' : 'game_functions_button start_button_clicked'} src={StartButton} alt="" />
@@ -128,6 +142,7 @@ const Game = () => {
           </div>
         </div>
         <div className='view_status_container view_status_container-enemy '>
+          <p>Level:</p>
           <p>Life: {witchHpCurrent}/{witch.hpmax}</p>
           <p>Attack: {witch.atk}</p>
           <p>Power: {witch.power}</p>

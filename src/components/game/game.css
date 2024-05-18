@@ -2,7 +2,7 @@
     position: relative;
     top: 0;
     width: 100%;
-    background-color: gray;
+    background-color: #013030;
     padding-block: 2vh;
 }
 .header_game_coin_container{
@@ -39,16 +39,15 @@
     display: flex;
     align-items: center;
     justify-content: center;
-    padding: 2vh;
+    padding: max(10vh);
     width: 100%;
     height:80%;
 }
+
 .game_window{
     position: relative;
-    background-color: rgb(216, 106, 243);
-    width: 80vh;
+    width:60vh;
     height: 50vh;
-    border: 1px solid black;
 }
 .game_window_bottom{
     width: 100%;
@@ -62,11 +61,27 @@
     position: relative;
     width: max(15vh,50px);
 }
+.game_status_container{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+
+}
+.game_image_enemydefeat{
+    position: relative;
+    margin: -12vh 0;
+    width: 60%;
+    height: 50%;
+    top: 0;
+}
+
 .game_char_mychar{
 
 }
 .view_status_container{
-    margin-inline: 5vh;
+    margin-inline:max(5vh);
+    font-size: max(1vw,14px);
 }
 .start_button{
     width: max(2vh,120px);
@@ -93,7 +108,7 @@
     position: absolute;
     bottom: 0;
     width: 100%;
-    background-color: gray;
+    background-color: #013030;
     padding-block: 2vh;
 }
 .footer_game_coin_container{
@@ -105,16 +120,62 @@
 
 
 /* MIDIA  */
-@media screen {
+@media (max-width:750px) {
+    .game_window{
+        position: relative;
+        width:max(500px);
+        height: 50vh;
+    }
+    .game_status_container{
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        width: 100%;
     
+    }
+    .game_image_enemydefeat{
+        position: relative;
+        margin: -12vh 0;
+        width: 60%;
+        height: 50%;
+        top: 0;
+    }
+
+}
+@media (max-width:710px) {
+    
+    .game_window{
+        position: relative;
+        width:max(300px);
+        height: 35vh;
+    }
+    .game_image_enemydefeat{
+        position: relative;
+        margin-bottom: -10vh;
+        top: 0;
+    }
+
+    .game_window_bottom{
+        width: 100%;
+        position: absolute;
+        bottom: 0;
+        display: flex;
+        justify-content: space-between;
+        padding:max(2vh,20px);
+
+    }
+    .game_char{
+        position: relative;
+        max-width: max(10vh,20px);
+    }
+    
+
 }
 @media (max-width:550px) {
     .game_window{
         position: relative;
-        background-color: rgb(216, 106, 243);
         width:max(300px);
-        height: 50vh;
-        border: 1px solid black;
+        height: 35vh;
     }
     .game_window_bottom{
         width: 100%;
@@ -127,17 +188,24 @@
     }
     .game_char{
         position: relative;
-        max-width: max(14vh,20px);
+        max-width: max(10vh,20px);
     }
     
 }
-@media (max-width:300px) {
+@media (max-width:500px) {
+    .main_game_window_container{
+        position: absolute;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        padding: max(10vh);
+        width: 100%;
+        height:80%;
+    }
     .game_window{
         position: relative;
-        background-color: rgb(216, 106, 243);
-        width:max(300px);
-        height: 50vh;
-        border: 1px solid black;
+        width:max(250px);
+        height: 30vh;
     }
     .game_window_bottom{
         width: 100%;
@@ -150,7 +218,7 @@
     }
     .game_char{
         position: relative;
-        max-width: max(10vh,20px);
+        max-width: max(8vh,20px);
     }
     
 }
