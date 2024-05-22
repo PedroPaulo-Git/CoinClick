@@ -63,16 +63,16 @@ const Game = () => {
   const [updateMyCharPower, setUpdateMyCharPower] = useState(myCharWizard.power);
   const [updateMyCharLevel, setUpdateMyCharLevel] = useState(myCharWizard.level);
 
-
-  //const [updateMyCharPower, setUpdateMyCharPower] = useState(myCharWizard.power);
-
-
   const [battleWins, setBattleWins] = useState(false)
 
-  const myCharAttack = myCharWizard.atk;
-  const enemyWitchHp = updateWitchHpMax;
-
   const handleStartBattle = async () => {
+    console.log(
+      myCharHpCurrent,
+      updateMyCharHpMax,
+      updateMyCharAttack,
+      updateMyCharPower,
+      updateMyCharLevel
+    )
     try {
       const results = await battle(
         battleWins,
