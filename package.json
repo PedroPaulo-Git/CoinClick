@@ -19,11 +19,13 @@
     "web-vitals": "^3.5.2"
   },
   "scripts": {
+    
     "start": "react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test",
     "eject": "react-scripts eject",
-    "start dev":" nodemon react-scripts start"
+    "start dev":" nodemon react-scripts start",
+    "start dev note": "nodemon react-scripts start --host 192.168.0.10"
   },
   "eslintConfig": {
     "extends": [
