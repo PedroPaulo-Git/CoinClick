@@ -27,8 +27,8 @@ const enemies =
 
     witch: {
         'level':1,
-        'exp':0,
-        'expmax':100,
+        'exp':15,
+        //'expmax':100,
         'hpmax': 200,
         'hp':200,
         'atk': 10,
@@ -37,7 +37,7 @@ const enemies =
     monster: {
         'level':1,
         'exp':0,
-        'expmax':100,
+        //'expmax':100,
         'hpmax': 200,
         'hp':200,
         'atk': 10,

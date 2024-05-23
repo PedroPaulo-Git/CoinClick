@@ -58,6 +58,8 @@ const Game = () => {
   const [updateMyCharAttack, setUpdateMyCharAttack] = useState(myCharWizard.atk);
   const [updateMyCharPower, setUpdateMyCharPower] = useState(myCharWizard.power);
   const [updateMyCharLevel, setUpdateMyCharLevel] = useState(myCharWizard.level);
+  const [updateMyCharExp, setUpdateMyCharExp] = useState(myCharWizard.exp);
+  const [updateMyCharExpMax, setUpdateMyCharExpMax] = useState(myCharWizard.expmax);
 
   const [showLevelUp, setShowLevelUp] = useState(false)
 
@@ -74,7 +76,7 @@ const Game = () => {
   }, [battleWins]);
 
   const handleStartBattle = async () => {
-    
+
     try {
       await battle(
         setWitchHpCurrent,
@@ -88,6 +90,8 @@ const Game = () => {
         setUpdateMyCharLevel,
         setUpdateMyCharAttack,
         setUpdateMyCharPower,
+        setUpdateMyCharExp,
+        setUpdateMyCharExpMax
       );
 
     } catch (error) {
@@ -121,6 +125,7 @@ const Game = () => {
 
         <div className='view_status_container view_status_container_mychar '>
           <p>Level: {updateMyCharLevel}</p>
+          <p>Exp:{updateMyCharExp}/{updateMyCharExpMax}</p>
           <p>Life: {myCharHpCurrent}/{updateMyCharHpMax}</p>
           <p>Attack: {updateMyCharAttack}</p>
           <p>Power: {updateMyCharPower}</p>
@@ -128,7 +133,6 @@ const Game = () => {
 
         <div>
           <div className='game_status_container'>
-            {/* {myCharHpCurrent < updateMyCharHpMax || witchHpCurrent < updateWitchHpMax ? <img className='game_window game_image_inbattle' src={BattleStarted} /> : <></>} */}
             {inBattle ? <img className='game_window game_image_inbattle' src={BattleStarted} /> : <></>}
             {witchHpCurrent <= 0 ? <img className='game_window game_image_enemydefeat' src={EnemyDefeat} /> : ''}
             {showLevelUp ? <img className='game_window game_image_levelup' src={LevelUp} /> : ''}
