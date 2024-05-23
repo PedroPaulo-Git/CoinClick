@@ -91,6 +91,7 @@
 }
 .view_status_container{
     margin-inline:max(5vh);
+    width:18vh ;
     font-size: max(1vw,14px);
 }
 
@@ -137,7 +138,7 @@
 @media (max-width:750px) {
     .game_window{
         position: relative;
-        width:max(500px);
+        width:max(400px);
         height: 50vh;
     }
     .game_status_container{

@@ -59,15 +59,23 @@ const Game = () => {
   const [updateMyCharPower, setUpdateMyCharPower] = useState(myCharWizard.power);
   const [updateMyCharLevel, setUpdateMyCharLevel] = useState(myCharWizard.level);
 
-  //const [battleWins, setBattleWins] = useState(false)
-  //const [inBattle, setInBattle] = useState(false)
-  useEffect(() => {
+  const [showLevelUp, setShowLevelUp] = useState(false)
 
-  }, []);
+  useEffect(() => {
+    if (battleWins) {
+      setTimeout(() => {
+        setShowLevelUp(true);
+      }, 1000);
+      const timer = setTimeout(() => {
+        setShowLevelUp(false);
+      }, 3000);
+      return () => clearTimeout(timer);
+    }
+  }, [battleWins]);
 
   const handleStartBattle = async () => {
+    
     try {
-      console.log('NOT WORKING')
       await battle(
         setWitchHpCurrent,
         setUpdateWitchHpMax,
@@ -123,7 +131,7 @@ const Game = () => {
             {/* {myCharHpCurrent < updateMyCharHpMax || witchHpCurrent < updateWitchHpMax ? <img className='game_window game_image_inbattle' src={BattleStarted} /> : <></>} */}
             {inBattle ? <img className='game_window game_image_inbattle' src={BattleStarted} /> : <></>}
             {witchHpCurrent <= 0 ? <img className='game_window game_image_enemydefeat' src={EnemyDefeat} /> : ''}
-            {battleWins ? <img className='game_window game_image_levelup' src={LevelUp} /> : ''}
+            {showLevelUp ? <img className='game_window game_image_levelup' src={LevelUp} /> : ''}
           </div>
           <div className='game_window'>
             <img className='game_window' src={Arena} alt="" />

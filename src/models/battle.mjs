@@ -116,8 +116,6 @@ export const battle = async (
         //console.log('Continuous battle... my character life:', myCharHpCurrent);
 
       }
-
-      //updateWitchHp(witchHpCurrent);
       updateMyCharHp(myCharHpCurrent);
       await delay(1000);
       
