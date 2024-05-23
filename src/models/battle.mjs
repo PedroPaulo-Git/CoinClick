@@ -1,7 +1,7 @@
 import { myCharCurrent, enemies } from './characters.js';
-export let battleWins = (false)
-//console.log(myCharCurrent, enemies)
-// defining const of battle >
+export let battleWins = false
+export let inBattle = false
+
 let myCharAttack = myCharCurrent.charWizard.atk;
 let myCharhHpMax = myCharCurrent.charWizard.hpmax
 let myCharHp = myCharhHpMax
@@ -24,11 +24,7 @@ let witchAttackCurrent = enemies.witch.atk;
 let witchPowerCurrent = enemies.witch.power
 
 
-
-
-
 export const battle = async (
-  battleWins,
   updateWitchHp,
   updateWitchHpMax,
   updateWitchLevel,
@@ -49,9 +45,9 @@ export const battle = async (
   const myCharUpgradeSkills = () => {
     //life upgrade >
     myCharhHpMax *= myCharLevel;
-    myCharHpCurrent = myCharhHpMax ;
+    myCharHpCurrent = myCharhHpMax;
     // //attack upgrade >
-    myCharAttackCurrent *= myCharLevel ;
+    myCharAttackCurrent *= myCharLevel;
     //power upgrade>
     myCharPowerCurrent *= myCharLevel;
     //return
@@ -105,57 +101,53 @@ export const battle = async (
   //attack my character function
   //--------------//
   const enemyAttack = async () => {
+    battleWins = false
     const delay = (ms) => new Promise(resolve => setTimeout(resolve, ms));
 
     while (myCharHpCurrent > 0 && !battleWins) {
-
+      inBattle = true
       myCharHpCurrent -= witchAttackCurrent
 
       if (myCharHpCurrent <= 0 && !battleWins) {
         battleWins = true
-        console.log('Battle finished with my character HP:', myCharHpCurrent);
+        inBattle = false
+        //console.log('Battle finished with my character HP:', myCharHpCurrent);
       } else {
-        console.log('Continuous battle... my character life:', myCharHpCurrent);
+        //console.log('Continuous battle... my character life:', myCharHpCurrent);
 
       }
 
       //updateWitchHp(witchHpCurrent);
       updateMyCharHp(myCharHpCurrent);
       await delay(1000);
-
-
-      //console.log("Battle Wins? :", battleWins)
-
-      //uplevelEnemy()
-      //uplevelMyChar()
-
+      
     }
-
+    
   }
 
   //attack enemy function
   //--------------//
   const myCharAttack = async () => {
     const delay = (ms) => new Promise(resolve => setTimeout(resolve, ms));
-
+    battleWins = false
     while (witchHpCurrent > 0 && !battleWins) {
 
-
+      inBattle = true
       witchHpCurrent -= myCharAttackCurrent
 
       if (witchHpCurrent <= 0 && !battleWins) {
         battleWins = true
-        console.log('Battle finished with witch HP:', witchHpCurrent);
+        inBattle = false
+        //console.log('Battle finished with witch HP:', witchHpCurrent);
       } else {
-        console.log('Continuous battle... Enemy life:', witchHpCurrent);
+        //console.log('Continuous battle... Enemy life:', witchHpCurrent);
 
       }
 
       updateWitchHp(witchHpCurrent);
       await delay(1000);
 
-
-      //console.log("Battle Wins? :", battleWins)
+      console.log("Battle Wins? :", battleWins)
 
       uplevelEnemy()
       uplevelMyChar()
@@ -166,7 +158,7 @@ export const battle = async (
   enemyAttack()
   myCharAttack()
 
-  return battleWins
+  return
 }
 
 

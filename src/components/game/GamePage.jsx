@@ -8,13 +8,14 @@ import MyCharImg from '../../assets/imgs/npcskins/char1.png';
 
 import EnemyDefeat from '../../assets/imgs/icons/enemydefeat.png';
 import LevelUp from '../../assets/imgs/icons/levelup.png'
+import BattleStarted from '../../assets/imgs/icons/inBattle.png'
 
 
 import Arena from '../../assets/imgs/arena.jpeg';
 import './game.css'
 
 import { myCharCurrent, enemies } from '../../models/characters'
-import { battle } from '../../models/battle.mjs'
+import { battle, battleWins, inBattle } from '../../models/battle.mjs'
 
 const Game = () => {
 
@@ -41,11 +42,6 @@ const Game = () => {
 
   //Witch
 
-  useEffect(() => {
-
-
-  }, []);
-
 
   //start battle
   const witch = enemies.witch
@@ -63,43 +59,34 @@ const Game = () => {
   const [updateMyCharPower, setUpdateMyCharPower] = useState(myCharWizard.power);
   const [updateMyCharLevel, setUpdateMyCharLevel] = useState(myCharWizard.level);
 
-  const [battleWins, setBattleWins] = useState(false)
+  //const [battleWins, setBattleWins] = useState(false)
+  //const [inBattle, setInBattle] = useState(false)
+  useEffect(() => {
+
+  }, []);
 
   const handleStartBattle = async () => {
-    console.log(
-      myCharHpCurrent,
-      updateMyCharHpMax,
-      updateMyCharAttack,
-      updateMyCharPower,
-      updateMyCharLevel
-    )
     try {
-      const results = await battle(
-        battleWins,
+      console.log('NOT WORKING')
+      await battle(
         setWitchHpCurrent,
         setUpdateWitchHpMax,
         setUpdateWitchLevel,
         setUpdateWitchAttack,
         setUpdateWitchPower,
         //myChar >>
-
         setMyCharHpCurrent,
         setUpdateMyCharHpMax,
         setUpdateMyCharLevel,
         setUpdateMyCharAttack,
         setUpdateMyCharPower,
-
       );
-      //show level up
-      setTimeout(() => {
-        setBattleWins(false);
-      }, 2000);
-      setBattleWins(results);
+
     } catch (error) {
       console.error('Error during battle:', error);
     }
-
   };
+
   //click coin
   const HandleCoinClicked = () => {
     console.log(setUpdateMyCharAttack)
@@ -133,8 +120,10 @@ const Game = () => {
 
         <div>
           <div className='game_status_container'>
+            {/* {myCharHpCurrent < updateMyCharHpMax || witchHpCurrent < updateWitchHpMax ? <img className='game_window game_image_inbattle' src={BattleStarted} /> : <></>} */}
+            {inBattle ? <img className='game_window game_image_inbattle' src={BattleStarted} /> : <></>}
             {witchHpCurrent <= 0 ? <img className='game_window game_image_enemydefeat' src={EnemyDefeat} /> : ''}
-           {battleWins === true ? <img className='game_window game_image_levelup' src={LevelUp} /> : ''} 
+            {battleWins ? <img className='game_window game_image_levelup' src={LevelUp} /> : ''}
           </div>
           <div className='game_window'>
             <img className='game_window' src={Arena} alt="" />

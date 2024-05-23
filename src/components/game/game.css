@@ -69,6 +69,12 @@
     justify-content: center;
 
 }
+.game_image_inbattle{
+    position: relative;
+    margin: -34vh 0 -16vh;
+    width: 150px;
+    height: 100%;
+}
 .game_image_enemydefeat{
     position: relative;
     margin: -25vh 0 -16vh;
@@ -79,6 +85,7 @@
     margin: -25vh 0 -16vh;
     width: 80%;
 }
+
 .game_char_mychar{
 
 }
@@ -140,6 +147,12 @@
         width: 100%;
     
     }
+    .game_image_inbattle{
+        position: relative;
+        margin: -34vh 0 -16vh;
+        width: 150px;
+        height: 100%;
+    }
     .game_image_enemydefeat{
         position: relative;
         margin: -25vh 0 -14vh;
@@ -160,6 +173,12 @@
         position: relative;
         width:max(300px);
         height: 35vh;
+    }
+    .game_image_inbattle{
+        position: relative;
+        margin: -34vh 0 -16vh;
+        width: 150px;
+        height: 100%;
     }
     .game_image_enemydefeat{
         position: relative;
@@ -188,6 +207,12 @@
         position: relative;
         width:max(300px);
         height: 35vh;
+    }
+    .game_image_inbattle{
+        position: relative;
+        margin: -34vh 0 -16vh;
+        width: 150px;
+        height: 100%;
     }
     .game_window_bottom{
         width: 100%;
@@ -218,6 +243,12 @@
         position: relative;
         width:max(250px);
         height: 30vh;
+    }
+    .game_image_inbattle{
+        position: relative;
+        margin: -34vh 0 -16vh;
+        width: 150px;
+        height: 100%;
     }
     .game_window_bottom{
         width: 100%;
