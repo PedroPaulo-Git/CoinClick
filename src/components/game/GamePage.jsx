@@ -84,6 +84,8 @@ const Game = () => {
         setUpdateWitchLevel,
         setUpdateWitchAttack,
         setUpdateWitchPower,
+        //setUpdateWitchExp,
+        //setUpdateWitchExpMax,
         //myChar >>
         setMyCharHpCurrent,
         setUpdateMyCharHpMax,

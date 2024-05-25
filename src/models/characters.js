@@ -4,7 +4,7 @@ const myCharCurrent =
     charWizard: {
         'level':1,
         'exp':0,
-        'expmax':100,
+        'expmax':50,
         'hpmax': 200,
         'hp':200,
         'atk': 25,
@@ -13,7 +13,7 @@ const myCharCurrent =
     charBoxer: {
         'level':1,
         'exp':0,
-        'expmax':100,
+        'expmax':50,
         'hpmax': 200,
         'hp':200,
         'atk': 10,

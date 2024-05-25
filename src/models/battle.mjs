@@ -18,9 +18,9 @@ let enemyWitchLevel = enemies.witch.level
 let witchExp = enemies.witch.exp
 //let witchExpMax = enemies.witch.expmax
 
-let witchHpCurrent = enemies.witch.hp;
-let witchAttackCurrent = enemies.witch.atk;
-let witchPowerCurrent = enemies.witch.power
+let witchHpCurrent =parseInt(enemies.witch.hp) ;
+let witchAttackCurrent =parseInt(enemies.witch.atk) ;
+let witchPowerCurrent =parseInt(enemies.witch.power) 
 
 
 export const battle = async (
@@ -29,6 +29,8 @@ export const battle = async (
   updateWitchLevel,
   updateWitchAttack,
   updateWitchPower,
+  //updateWitchExp,
+  //updateWitchExpMax,
   //
   updateMyCharHp,
   updateMyCharHpMax,
@@ -97,12 +99,14 @@ export const battle = async (
 
   const enemyUpgradeSkills = () => {
     //life upgrade >
-    enemyWitchHpMax = enemyWitchHpMax * enemyWitchLevel * 1.2;
-    witchHpCurrent = enemyWitchHpMax;
+    enemyWitchHpMax = (Math.floor(enemyWitchHpMax * 1.5));
+    witchHpCurrent = (Math.floor(enemyWitchHpMax));
     //attack upgrade >
-    witchAttackCurrent = witchAttackCurrent * enemyWitchLevel * 1.24;
+    witchAttackCurrent = (Math.floor(witchAttackCurrent * 1.45))
     //power upgrade >
-    witchPowerCurrent *= enemyWitchLevel * 1.31;
+    witchPowerCurrent = (Math.floor(witchPowerCurrent * 1.51));
+    //exp >
+    witchExp = (Math.floor(witchExp * 1.1))
     //return
 
     updateWitchHp(witchHpCurrent)
